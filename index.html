@@ -1,0 +1,1098 @@
+<html><head><base href="https://www.osonegroinfo.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Oso Negro</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #4a4a4a;
+    --accent-color: #8B4513;
+    --text-color: #f5f5f5;
+    --bg-color: #1F2937;
+    --forest-green: #2F4F4F;
+    --light-brown: #DEB887;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--forest-green) 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 L50,0 L100,50 M0,100 L50,50 L100,100" stroke="%23395144" stroke-width="0.5" opacity="0.1"/></svg>');
+    opacity: 0.2;
+  }
+
+  .site-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 150px;
+    height: auto;
+    z-index: 10;
+  }
+
+  @media (max-width: 768px) {
+    .site-logo {
+      width: 100px;
+      top: 10px;
+      left: 10px;
+    }
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .author {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .author {
+      font-size: 1em;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  h1 {
+    font-size: 5em;
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+    animation: titleFloat 3s ease-in-out infinite;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .scientific-name {
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: -20px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-style: italic;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    animation: titleFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes titleFloat {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+
+  .scene-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: 40px auto;
+    perspective: 1000px;
+  }
+
+  .landscape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mountains {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    height: 200px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path fill="%232F4F4F" d="M0,200 L300,50 L500,150 L700,20 L1000,200 Z"/></svg>') repeat-x;
+    background-size: 1000px 200px;
+    opacity: 0.8;
+  }
+
+  .grass {
+    position: absolute;
+    bottom: 0;
+    left: 0; 
+    width: 100%;  
+    height: 80px;
+    background: linear-gradient(to bottom, #2F4F4F, #1a472a);
+    transform-origin: bottom;
+    animation: grassWave 3s ease-in-out infinite;
+  }
+
+  .grass::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;  
+    width: 100%;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 20"><path fill="%234CAF50" d="M0,20 Q12.5,0 25,20 Q37.5,0 50,20"/></svg>') repeat-x;
+    background-size: 50px 20px;
+    animation: grassDetailWave 2s ease-in-out infinite;
+  }
+
+  @keyframes grassWave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.05); }
+  }
+
+  @keyframes grassDetailWave {
+    0%, 100% { background-position-x: 0; }
+    50% { background-position-x: 25px; }
+  }
+
+  .oso-container {
+    position: absolute;
+    top: 20%;
+    left: -200px;
+    width: 300px;
+    height: 200px;
+    animation: walkingBear 20s linear infinite;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes walkingBear {
+    0% { left: -200px; top: 20%; transform: rotateY(0deg); }
+    45% { left: 50%; top: 20%; transform: rotateY(0deg); }
+    50% { left: 50%; top: 20%; transform: rotateY(180deg); }
+    95% { left: -200px; top: 20%; transform: rotateY(180deg); }
+    100% { left: -200px; top: 20%; transform: rotateY(0deg); }
+  }
+
+  .oso {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: bearBob 1s ease-in-out infinite;
+    cursor: grab;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  @keyframes bearBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+
+  .oso img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .oso.dropping {
+    transition: transform 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.91);
+  }
+
+  .button-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin: 40px auto;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .conoce-mas, .calendario-btn, .video-btn {
+    background: linear-gradient(135deg, var(--accent-color), #a0522d);
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conoce-mas:hover, .calendario-btn:hover, .video-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, #a0522d, var(--accent-color));
+  }
+
+  .conoce-mas:active, .calendario-btn:active, .video-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+
+  .info-section {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    padding: 40px 20px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(50px);
+    visibility: hidden;
+    transition: all 0.8s ease-out;
+    position: relative;  
+  }
+
+  .cerrar-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .cerrar-info:hover {
+    background-color: #a0522d;
+    transform: scale(1.1);
+  }
+
+  .info-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .info-box {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 35px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+
+  .calendar-box {
+    display: block;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease-out;
+    order: -1;
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    padding: 30px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
+    border-radius: 20px;
+  }
+
+  .calendar-box h2 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--light-brown);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  .calendar-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+  }
+
+  .info-box.calendar-box {
+    order: -1;
+    grid-column: 1 / -1;
+    margin-top: 20px;
+  }
+
+  .info-box.calendar-box.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pdf-calendar {
+    background: rgba(255,255,255,0.08);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    margin-top: 0;
+  }
+
+  .pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  }
+
+  .pdf-viewer:hover {
+    transform: translateY(-5px);
+  }
+
+  .download-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin: 0 0 30px;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .download-btn:hover {
+    background-color: #a0522d;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .video-box {
+    display: none;
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 20px;
+    padding: 30px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .video-box h2 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--light-brown);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3em;
+    }
+
+    .info-section {
+      padding: 40px 15px;
+    }
+    
+    .info-grid {
+      gap: 20px;
+    }
+    
+    .info-box {
+      padding: 25px;
+    }
+    
+    .info-box h2 {
+      font-size: 1.4em;
+    }
+
+    .scene-container {
+      height: 300px;
+    }
+
+    .calendar-box {
+      padding: 20px;
+    }
+    
+    .calendar-box h2 {
+      font-size: 2em;
+    }
+    
+    .pdf-viewer {
+      height: 500px;
+    }
+    
+    .download-btn {
+      padding: 12px 25px;
+      font-size: 1em;
+    }
+    
+    .video-container {
+      max-width: 100%;
+    }
+    
+    .conoce-mas, .calendario-btn, .video-btn {
+      padding: 12px 25px;
+      font-size: 0.9em;
+    }
+    
+    .button-container {
+      gap: 15px;
+    }
+  }
+
+  header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .forest-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    animation: floatParticle 15s infinite linear;
+  }
+
+  @keyframes floatParticle {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .oso-container.dragging {
+    z-index: 1000;
+  }
+
+  .oso {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: bearBob 1s ease-in-out infinite;
+    cursor: grab;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .oso:active {
+    cursor: grabbing;
+  }
+
+  .pdf-calendar {
+    background: rgba(255,255,255,0.08);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  }
+
+  .pdf-viewer:hover {
+    transform: translateY(-5px);
+  }
+
+  .download-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin: 0 0 30px;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .download-btn:hover {
+    background-color: #a0522d;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .citation {
+    display: none;
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 20px 0;
+    color: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .citation.visible {
+    display: block;
+  }
+
+  .citation a {
+    color: var(--light-brown);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .citation a:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .pdf-viewer {
+      height: 500px;
+    }
+    
+    .calendar-box h2 {
+      font-size: 2em;
+    }
+    
+    .pdf-calendar {
+      padding: 20px;
+    }
+  }
+
+  .footer-author {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--forest-green) 100%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2em;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    line-height: 1.4;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+  <header>
+    <img src="https://i.ibb.co/M9htc9D/humova-logo-sin-fondo.png" 
+         alt="Humova logo" 
+         class="site-logo"
+         width="150" 
+         height="auto">
+    <div class="header-overlay"></div>
+    <div class="container">
+      <div class="header-content">
+        <div>
+          <h1>El Oso Negro</h1>
+          <div class="scientific-name">Ursus americanus</div>
+        </div>
+      </div>
+      <div class="author">
+        Hecho por:<br>
+        Salvador Antonio González Salinas
+      </div>
+      <div class="scene-container">
+        <div class="landscape">
+          <div class="mountains"></div>
+          <div class="grass"></div>
+        </div>
+        <div class="oso-container">
+          <div class="oso">
+            <img src="https://www.pngplay.com/wp-content/uploads/13/American-Black-Bear-Transparent-Images.png" 
+                 alt="Black bear walking, photographic style, isolated on transparent background"
+                 width="300" 
+                 height="200"
+                 style="object-fit: contain;">
+          </div>
+        </div>
+      </div>
+      <div class="button-container">
+        <button class="conoce-mas">Saber más</button>
+        <button class="calendario-btn">Calendario</button>
+        <button class="video-btn">Video</button>
+      </div>
+    </div>
+    <div class="forest-particles">
+    </div>
+  </header>
+
+  <div class="container info-section">
+    <button class="cerrar-info">×</button>
+    <div class="info-grid">
+      <div class="info-box">
+        <h2>Características del Oso Negro</h2>
+        <ul>
+          <li>Nombre científico: Ursus americanus</li>
+          <li>Tamaño: Entre 1.2 y 2 metros de largo</li>
+          <li>Peso: Entre 60 y 300 kg</li>
+          <li>Color: Principalmente negro, pero puede variar desde marrón claro hasta canela</li>
+          <li>Altura al hombro: 90 a 105 cm</li>
+          <li>Longitud de cola: 12 a 15 cm</li>
+          <li>Vista: Similar a la humana</li>
+          <li>Olfato: 7 veces más potente que un perro sabueso</li>
+          <li>Garras: 3.8 cm de largo, curvas y no retráctiles</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Distribución y Hábitat</h2>
+        <p>El oso negro se encuentra principalmente en Norteamérica, desde Alaska hasta México. Habita en una variedad de bosques, incluyendo:</p>
+        <ul>
+          <li>Bosques boreales</li>
+          <li>Bosques templados</li>
+          <li>Bosques tropicales</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Dieta</h2>
+        <ul>
+          <li>Frutas y bayas silvestres</li>
+          <li>Nueces y semillas</li>
+          <li>Insectos y larvas</li>
+          <li>Pequeños mamíferos</li>
+          <li>Pescado, especialmente salmón</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Comportamiento</h2>
+        <ul>
+          <li>Generalmente solitarios</li>
+          <li>Principalmente nocturnos</li>
+          <li>Hibernan durante el invierno</li>
+          <li>Excelentes nadadores y trepadores</li>
+          <li>Velocidad de hasta 50 km/h</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Conservación</h2>
+        <p>Principales amenazas:</p>
+        <ul>
+          <li>Pérdida de hábitat</li>
+          <li>Conflictos humanos</li>
+          <li>Caza ilegal</li>
+          <li>Cambio climático</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Datos Curiosos</h2>
+        <ul>
+          <li>Pueden correr hasta 56 km/h</li>
+          <li>Son excelentes nadadores desde el nacimiento</li>
+          <li>Pueden trepar árboles desde muy jóvenes</li>
+          <li>Las hembras dan a luz durante la hibernación</li>
+          <li>Las crías nacen pesando solo 300 gramos</li>
+          <li>Pueden vivir hasta 25 años en la naturaleza</li>
+          <li>Tienen una memoria excelente para recordar fuentes de alimento</li>
+          <li>Son mayormente solitarios excepto madres con crías</li>
+        </ul>
+      </div>
+
+      <div class="citation">
+        Fuente: <a href="https://www.nationalgeographic.com/animals/mammals/facts/american-black-bear" target="_blank">National Geographic - American Black Bear</a> | 
+        <a href="https://www.fws.gov/species/american-black-bear-ursus-americanus" target="_blank">U.S. Fish & Wildlife Service</a>
+      </div>
+
+      <div class="info-box calendar-box">
+        <h2>Calendario</h2>
+        <div class="pdf-calendar">
+          <a href="https://drive.google.com/file/d/1tYxROVgsxgYrpNpZrV_j40ipWVnLAVwE/view" class="download-btn" target="_blank">
+            Ver Calendario PDF
+          </a>
+          <iframe class="pdf-viewer" 
+                  src="https://drive.google.com/file/d/1tYxROVgsxgYrpNpZrV_j40ipWVnLAVwE/preview"
+                  allow="autoplay"></iframe>
+        </div>
+      </div>
+
+      <div class="info-box video-box">
+        <h2>Video</h2>
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube.com/embed/U6dukGVNgkI"
+            title="Video del Oso Negro"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-author">
+    Hecho por:<br>
+    Salvador Antonio González Salinas
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const conoceMasBtn = document.querySelector('.conoce-mas');
+      const calendarioBtn = document.querySelector('.calendario-btn');
+      const videoBtn = document.querySelector('.video-btn');
+      const infoSection = document.querySelector('.info-section');
+      const infoBoxes = document.querySelectorAll('.info-box');
+      const osoContainer = document.querySelector('.oso-container');
+      const oso = document.querySelector('.oso');
+      const cerrarInfoBtn = document.querySelector('.cerrar-info');
+
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let originalX = 0;
+      let originalY = 0;
+      let currentTransform = { x: 0, y: 0 };
+      let velocityX = 0;
+      let velocityY = 0;
+      let lastX = 0;
+      let lastY = 0;
+      let lastTime = 0;
+
+      infoSection.style.visibility = 'hidden';
+      
+      conoceMasBtn.addEventListener('click', () => {
+        infoSection.style.visibility = 'visible';
+        setTimeout(() => {
+          infoSection.classList.add('visible');
+        }, 100);
+        
+        infoBoxes.forEach((box, index) => {
+          if (!box.classList.contains('calendar-box') && !box.classList.contains('video-box')) {
+            box.style.display = 'block';
+            setTimeout(() => {
+              box.style.opacity = '1';
+              box.style.transform = 'translateY(0)';
+            }, 300 + (index * 150));
+          } else {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(50px)';
+            setTimeout(() => {
+              box.style.display = 'none';
+            }, 300);
+          }
+        });
+
+        document.querySelector('.citation').style.display = 'block';
+        setTimeout(() => {
+          document.querySelector('.citation').style.opacity = '1';
+        }, 300);
+        
+        conoceMasBtn.style.opacity = '0';
+        setTimeout(() => {
+          conoceMasBtn.style.display = 'none';
+        }, 300);
+        
+        const targetY = infoSection.getBoundingClientRect().top + window.pageYOffset - 50;
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth'
+        });
+      });
+
+      calendarioBtn.addEventListener('click', () => {
+        infoSection.style.visibility = 'visible';
+        setTimeout(() => {
+          infoSection.classList.add('visible');
+        }, 100);
+        
+        infoBoxes.forEach(box => {
+          if (box.classList.contains('calendar-box')) {
+            box.style.display = 'block';
+            setTimeout(() => {
+              box.style.opacity = '1';
+              box.style.transform = 'translateY(0)';
+            }, 300);
+          } else {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(50px)';
+            setTimeout(() => {
+              box.style.display = 'none';
+            }, 300);
+          }
+        });
+        
+        document.querySelector('.citation').style.opacity = '0';
+        setTimeout(() => {
+          document.querySelector('.citation').style.display = 'none';
+        }, 300);
+
+        calendarioBtn.style.opacity = '0';
+        setTimeout(() => {
+          calendarioBtn.style.display = 'none';
+        }, 300);
+        
+        window.scrollTo({
+          top: infoSection.offsetTop,
+          behavior: 'smooth'
+        });
+      });
+
+      videoBtn.addEventListener('click', () => {
+        infoSection.style.visibility = 'visible';
+        setTimeout(() => {
+          infoSection.classList.add('visible');
+        }, 100);
+        
+        infoBoxes.forEach(box => {
+          if (box.classList.contains('video-box')) {
+            box.style.display = 'block';
+            setTimeout(() => {
+              box.style.opacity = '1';
+              box.style.transform = 'translateY(0)';
+            }, 300);
+          } else {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(50px)';
+            setTimeout(() => {
+              box.style.display = 'none';
+            }, 300);
+          }
+        });
+        
+        document.querySelector('.citation').style.opacity = '0';
+        setTimeout(() => {
+          document.querySelector('.citation').style.display = 'none';
+        }, 300);
+
+        videoBtn.style.opacity = '0';
+        calendarioBtn.style.opacity = '0';
+        conoceMasBtn.style.opacity = '0';
+        setTimeout(() => {
+          videoBtn.style.display = 'none';
+          calendarioBtn.style.display = 'none';
+          conoceMasBtn.style.display = 'none';
+        }, 300);
+        
+        window.scrollTo({
+          top: infoSection.offsetTop,
+          behavior: 'smooth'
+        });
+      });
+
+      cerrarInfoBtn.addEventListener('click', () => {
+        infoSection.classList.remove('visible');
+        
+        infoBoxes.forEach(box => {
+          box.style.opacity = '0';
+          box.style.transform = 'translateY(50px)';
+        });
+        
+        setTimeout(() => {
+          infoSection.style.visibility = 'hidden';
+          infoBoxes.forEach(box => {
+            box.style.display = 'none';
+          });
+          
+          conoceMasBtn.style.display = 'block';
+          calendarioBtn.style.display = 'block';
+          videoBtn.style.display = 'block';
+          setTimeout(() => {
+            conoceMasBtn.style.opacity = '1';
+            calendarioBtn.style.opacity = '1';
+            videoBtn.style.opacity = '1';
+          }, 100);
+        }, 800);
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      function handleDragStart(e) {
+        isDragging = true;
+        e.preventDefault();
+        
+        let clientX, clientY;
+        if (e.type === 'touchstart') {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+        
+        const rect = oso.getBoundingClientRect();
+        startX = clientX - rect.left;
+        startY = clientY - rect.top;
+        
+        lastX = clientX;
+        lastY = clientY;
+        lastTime = Date.now();
+        
+        originalX = rect.left;
+        originalY = rect.top;
+        
+        oso.style.transition = 'none';
+      }
+
+      function handleDrag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        
+        let clientX, clientY;
+        if (e.type === 'touchmove') {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+        
+        const newX = clientX - startX - originalX;
+        const newY = clientY - startY - originalY;
+
+        const now = Date.now();
+        const dt = now - lastTime;
+        if (dt > 0) {
+          velocityX = (clientX - lastX) / dt;
+          velocityY = (clientY - lastY) / dt;
+        }
+        
+        lastX = clientX;
+        lastY = clientY;
+        lastTime = now;
+
+        const maxY = window.innerHeight * 0.4;
+        const constrainedY = Math.min(Math.max(newY, -originalY), maxY - originalY);
+        
+        currentTransform = {
+          x: newX,
+          y: constrainedY
+        };
+        
+        oso.style.transform = `translate(${newX}px, ${constrainedY}px)`;
+      }
+
+      function handleDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const finalY = window.innerHeight * 0.8;
+        const dropDuration = Math.sqrt(2 * (finalY - currentTransform.y) / 980) * 1000;
+        
+        oso.style.transition = `transform ${dropDuration}ms cubic-bezier(0.17, 0.67, 0.83, 0.91)`;
+        oso.style.transform = `translate(${currentTransform.x}px, ${finalY}px)`;
+        
+        setTimeout(() => {
+          oso.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          oso.style.transform = 'translate(0, 0)';
+        }, dropDuration + 100);
+      }
+
+      oso.addEventListener('mousedown', handleDragStart, { passive: false });
+      oso.addEventListener('touchstart', handleDragStart, { passive: false });
+      
+      window.addEventListener('mousemove', handleDrag, { passive: false });
+      window.addEventListener('touchmove', handleDrag, { passive: false });
+      
+      window.addEventListener('mouseup', handleDragEnd);
+      window.addEventListener('touchend', handleDragEnd);
+      window.addEventListener('mouseleave', handleDragEnd);
+
+      function createParticles() {
+        const container = document.querySelector('.forest-particles');
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 15 + 's';
+          particle.style.opacity = Math.random() * 0.5;
+          container.appendChild(particle);
+        }
+      }
+      createParticles();
+    });
+  </script>
+</body></html>
