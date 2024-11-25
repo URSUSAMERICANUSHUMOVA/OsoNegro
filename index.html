@@ -63,26 +63,6 @@
     }
   }
 
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .author {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    .author {
-      font-size: 1em;
-      top: 10px;
-      right: 10px;
-    }
-  }
-
   h1 {
     font-size: 5em;
     font-weight: 800;
@@ -645,18 +625,6 @@
       padding: 20px;
     }
   }
-
-  .footer-author {
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-    background: linear-gradient(135deg, var(--bg-color) 0%, var(--forest-green) 100%);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.2em;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    line-height: 1.4;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
@@ -669,16 +637,8 @@
          height="auto">
     <div class="header-overlay"></div>
     <div class="container">
-      <div class="header-content">
-        <div>
-          <h1>El Oso Negro</h1>
-          <div class="scientific-name">Ursus americanus</div>
-        </div>
-      </div>
-      <div class="author">
-        Hecho por:<br>
-        Salvador Antonio González Salinas
-      </div>
+      <h1>El Oso Negro</h1>
+      <div class="scientific-name">Ursus americanus</div>
       <div class="scene-container">
         <div class="landscape">
           <div class="mountains"></div>
@@ -809,11 +769,6 @@
       </div>
 
     </div>
-  </div>
-
-  <div class="footer-author">
-    Hecho por:<br>
-    Salvador Antonio González Salinas
   </div>
 
   <script>
